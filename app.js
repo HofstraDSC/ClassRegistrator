@@ -5,7 +5,7 @@ let path = require('path');
 let exphbs = require('express-handlebars');
 
 let routes = require('./routes/index');
-//let users = require('./routes/users');
+let users = require('./routes/users');
 
 var app = express();
 
@@ -20,6 +20,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
+app.use('/student', users);
 
 app.set('port', (process.env.PORT || 3000));
 
