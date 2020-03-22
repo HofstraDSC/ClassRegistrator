@@ -2,19 +2,19 @@ let express = require('express');
 let router = express.Router();
 
 router.get('/student/:id', function(req, res){
-	res.render('../views/layouts/id');
+	res.render('id');
 });
 
 router.get('/student/add', function(req, res){
-	res.render('../views/layouts/add');
+	res.render('add');
 });
 
 router.get('/student/delete', function(req, res){
-	res.render('../views/layouts/delete');
+	res.render('delete');
 });
 
 router.get('/student/next-semester', function(req, res){
-	res.render('../views/layouts/next-semester');
+	res.render('next-semester');
 });
 
 module.exports = router;
