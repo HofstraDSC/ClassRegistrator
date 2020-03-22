@@ -13,10 +13,10 @@
   "author": "Hofstra DSC",
   "license": "ISC",
   "dependencies": {
-	"body-parser": "*",
-	"cookie-parser": "^1.4.1",
-	"express": "*",
-	"express-handlebars": "*",
-	"promise-mysql": "^4.1.3"
+    "body-parser": "*",
+    "cookie-parser": "^1.4.1",
+    "express": "*",
+    "express-handlebars": "*",
+    "promise-mysql": "^4.1.3"
   }
 }
