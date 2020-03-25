@@ -1,18 +1,6 @@
-const express = require("express")
-var mysql = require("mysql")
-const bodyParser = require("body-parser")
 
-const app = express()
-const port = 3000;
-var connection = mysql.createConnection({
-  host: '',
-  user: '',
-  password: '',
-  database: ''
-})
-connection.connect()
 
-function getUser(student)
+function getUser(mysql,student)
 {
     //Find user
     mysql.query(`SELECT * FROM table WHERE id = ${student}`, (err, res) => {
@@ -34,6 +22,7 @@ function getUser(student)
 
 function searchClassesForUser()
 {
+   mysql.query()
 }
 
 //Alonzo's
