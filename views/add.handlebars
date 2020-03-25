@@ -1,38 +1,30 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <link href="../public/css/style-add.css" rel="stylesheet" type="text/css">
-    </head>
-    <body>
-        <h1 class="center">Enter your course here</h1>
-        <input class="center" id="filterInput" type="text"/>
-        <ul class="center" id="courses">
-            <li class="course-item"><a>best</a></li>
-            <li class="course-item"><a>earn</a></li>
-            <li class="course-item"><a>test</a></li>
-            <li class="course-item"><a>moon</a></li>
-            <li class="course-item"><a>rn</a></li>
-        </ul>
-        <script>
-            let filterInput = document.getElementById("filterInput");
-            filterInput.addEventListener("keyup", filterCourses); // filterCourses function every time a char is typed
-            function filterCourses(){
+<h1 class="center">Enter your course here</h1>
+<input class="center" id="filterInput" type="text"/>
+<ul class="center" id="courses">
+    <li class="course-item"><a>best</a></li>
+    <li class="course-item"><a>earn</a></li>
+    <li class="course-item"><a>test</a></li>
+    <li class="course-item"><a>moon</a></li>
+    <li class="course-item"><a>rn</a></li>
+</ul>
+<script>
+    let filterInput = document.getElementById("filterInput");
+    filterInput.addEventListener("keyup", filterCourses); // filterCourses function every time a char is typed
+    function filterCourses(){
 
-                let filterValue = document.getElementById("filterInput").value.toUpperCase(); // uppercases typed char
-                let ul = document.getElementById("courses");
-                let li = ul.querySelectorAll("li.course-item"); // gets all ul items
+        let filterValue = document.getElementById("filterInput").value.toUpperCase(); // uppercases typed char
+        let ul = document.getElementById("courses");
+        let li = ul.querySelectorAll("li.course-item"); // gets all ul items
 
-                for (let i = 0; i < li.length; i++){
+        for (let i = 0; i < li.length; i++){
 
-                    let a = li[i].getElementsByTagName("a")[0];
-                    if (a.innerHTML.toUpperCase().indexOf(filterValue) > -1){
-                        li[i].style.display = "";
-                    } else {
-                        li[i].style.display = "none"; // no display
-                    }
-
-                }
+            let a = li[i].getElementsByTagName("a")[0];
+            if (a.innerHTML.toUpperCase().indexOf(filterValue) > -1){
+                li[i].style.display = "";
+            } else {
+                li[i].style.display = "none"; // no display
             }
-        </script>
-    </body>
-</html>
+
+        }
+    }
+</script>

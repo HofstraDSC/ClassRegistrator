@@ -1,12 +1,18 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Enter ID</title>
-        <link href="../public/css/style-id.css" rel="stylesheet" type="text/css">
-    </head>
-    <body>
-        <h1 class="center">Hello</h1>
-        <p class="center">Please enter your ID here</p>
-        <input class="center" type="text"/>
-    </body>
-</html>
+<h1 class="center">Hello</h1>
+<p class="center">What is your name?</p>
+<input class="center" type="text"/>
+<a id="submitB" href="student/add">
+    <button class="center">Submit</button>
+</a>
+<!--WIP
+<script>
+    let submitB = document.getElementById("submitB");
+    submitB.addEventListener("keyup", redirect(e));
+
+    function redirect(e){
+        if (e.which == 13){
+            console.log("enter pressed");
+            window.location = "student/get/:id";
+        }
+    }
+</script>-->

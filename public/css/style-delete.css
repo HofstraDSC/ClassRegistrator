@@ -1,2 +1,18 @@
-/* test! */
-/* second test! */
+html {
+    margin: 0 auto;
+    height: 100%;
+}
+
+body {
+    background-image: linear-gradient(0deg, #ff0000, #fff);
+}
+
+.center {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin: 0 auto;
+    font-family: Tahoma, Verdana, Geneva, sans-serif;
+}
