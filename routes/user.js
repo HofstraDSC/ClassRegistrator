@@ -1,25 +1,74 @@
-let http = require('http');
-const { seedElements, getElementById, createElement, updateElement, getIndexById } = require('./utils');
+const express = require("express");
+const mysql = require("mysql");
+const router = express.Router();
 
-let ID = 701823331;
-let courses = ['CSC112', 'MATH73', 'PHYS10A', 'CSC110'];
-//seedElements(courses, 'courses');
-http.createServer(function(req, res){
-    res.writeHead(200, { 'Content-Type': 'text/html' });
-    res.write(`Student ID: ${ID}\n`);
-    res.write(`Courses: ${courses}\n`);
-    res.end();
-}).listen(8080);
+const app = express();
+const port = 3306;
 
-function addCourseToUser(){
-    router.put('/ID/:courses', (req, res, next) =>{
-        //let newCourse = req.params.courses;
-        courses.push(res.courses);
-        res.status(201).send();
+let connection = mysql.createConnection({
+    host: '35.243.218.252',
+    user: 'root',
+    password: 'hofstradsc2020',
+    database: 'scheduler_data'
+})
 
+connection.connect(function(err){
+    if(err) throw err;
+    console.log('Connected to the database');
+})
+
+
+function getUser(mysql, student) {
+    //Find user
+    mysql.query(`SELECT * FROM table WHERE id = ${student}`, (err, res) => {
+        if (err) {
+            console.log("error: ", err);
+            result(err, null);
+            return;
+        }
+        if (res.length) {
+            console.log("Student: ", res[0]);
+            result(null, res[0]);
+            return;
+        }
+        //Student not found
+        result({ kind: "not_found" }, null);
     });
 }
 
-function removeCourseFromUser(){
 
+function searchClassesForUser() {
+    mysql.query();
 }
+
+router.use('/student/add', (req, res) => {
+//Add a new course to student's table
+    function addCourseToUser(mysql, student){
+        let newCourse = `INSERT INTO ${student} VALUES ${req.params.id}`;
+        mysql.query(newCourse,(err, res) => {
+            if(err) {
+                console.log('Error: ', err);
+                result(err, null);
+                return;
+            }
+            console.log(`Added the course ${req.params.id}!`);
+        });
+    }
+    res.send(newCourse);
+});
+
+//Remove an existing course from the student's table
+router.use('/student/delete', (req, res) => {
+    function removeCourseFromUser(mysql, student){
+        let removedCourse = `DELETE FROM ${student} WHERE course = ${req.params.id}`;
+        mysql.query(removedCourse, (err, res) => {
+            if(err){
+                console.log('Error:', err);
+                result(err, null);
+                return;
+            }
+            console.log(`Removed ${req.params.id} from ${student}!`);
+        });
+    }
+    res.send(removedCourse);
+});
