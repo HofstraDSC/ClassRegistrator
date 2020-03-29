@@ -1,9 +1,9 @@
+const db =  require(database);
 
-
-function getUser(mysql,student)
+function getUser(student)
 {
     //Find user
-    mysql.query(`SELECT * FROM table WHERE id = ${student}`, (err, res) => {
+    db.query(`SELECT * FROM Student WHERE id = ${student}`, (err, res) => {
     if (err) {
       console.log("error: ", err);
       result(err, null);
@@ -14,7 +14,6 @@ function getUser(mysql,student)
       result(null, res[0]);
       return;
     }
-
     //Student not found
     result({ kind: "not_found" }, null);
   });
@@ -22,15 +21,36 @@ function getUser(mysql,student)
 
 function searchClassesForUser()
 {
-   mysql.query()
+   db.query(`SELECT * FROM Courses`, function (err, res) {
+    if (err)
+    {        
+        console.log("error: ", err);
+        result(err, null);
+        return;
+    }
+    //Run logic to check for validity
+    result(null,res);
+  });
 }
 
-//Alonzo's
-function addCourseToUser()
+function addCourseToUser(sid, courseID, column)
 {
+    db.query(`UPDATE Students SET {column} = ${courseID} WHERE studentID = ${sid}`,function (err, res) {
+    if (err)
+    {        
+        console.log("error: ", err);
+        result(err, null);
+        return;
+    });
 }
 //Alonzo's
-function removeCourseFromUser()
+function removeCourseFromUser(sid, courseID, column)
 {
-    
+ db.query(`UPDATE Students SET ${column} = "" WHERE studentID = ${sid}`,function (err, res) {
+    if (err)
+    {        
+        console.log("error: ", err);
+        result(err, null);
+        return;
+    });   
 }

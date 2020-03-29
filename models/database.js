@@ -8,6 +8,6 @@ var connection = mysql.createConnection({
   host: '',
   user: '',
   password: '',
-  database: ''
+  database: 'scheduler_data'
 })
 connection.connect()
