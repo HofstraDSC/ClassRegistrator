@@ -5,6 +5,7 @@ const router = express.Router();
 const app = express();
 const port = 3306;
 
+//Establish connection
 let connection = mysql.createConnection({
     host: '35.243.218.252',
     user: 'root',
@@ -41,7 +42,7 @@ function searchClassesForUser() {
     mysql.query();
 }
 
-router.use('/student/add', (req, res) => {
+router.get('/student/add', (req, res) => {
 //Add a new course to student's table
     function addCourseToUser(mysql, student){
         let newCourse = `INSERT INTO ${student} VALUES ${req.params.id}`;
@@ -58,14 +59,14 @@ router.use('/student/add', (req, res) => {
 });
 
 //Remove an existing course from the student's table
-router.use('/student/delete', (req, res) => {
+router.get('/student/delete', (req, res) => {
     function removeCourseFromUser(mysql, student){
         let removedCourse = `DELETE FROM ${student} WHERE course = ${req.params.id}`;
         mysql.query(removedCourse, (err, res) => {
             if(err){
                 console.log('Error:', err);
                 result(err, null);
-                return;
+                res.status(400).send();
             }
             console.log(`Removed ${req.params.id} from ${student}!`);
         });
