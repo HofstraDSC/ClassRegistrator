@@ -4,7 +4,7 @@ html {
 }
 
 body {
-    background-image: linear-gradient(0deg, #fff000, #fff);
+    background-image: linear-gradient(#fff, #fff000);
 }
 
 .center {
@@ -19,4 +19,24 @@ body {
 
 a {
     display: block;
+}
+
+table {
+    background-color: white;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 5px;
+    margin: 0 auto;
+    font-family: Tahoma, Verdana, Geneva, sans-serif;
+}
+
+td, th {
+    border: 2px solid black;
+}
+
+#check {
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
 }
