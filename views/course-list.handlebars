@@ -1,0 +1,90 @@
+<h1 class="center">Enter your course here</h1>
+<input class="center" id="filterInput" type="text"/>
+<p class="center">Filter by:</p>
+<div id="check">
+    <input id="checkProf" type="checkbox">Professor</input>
+    <input id="checkDept" type="checkbox">Department</input>
+    <input id="checkCred" type="checkbox">Credits</input>
+</div>
+<table>
+    <tr id="rowH">
+        <th>Course</th>
+        <th>Department</th>
+        <th>Professor</th>
+        <th>Credits</th>
+    </tr>
+    <tr id="row">
+        <td class="t_course">Intro to Computer Architecture</td>
+        <td class="t_department">Computer Science</td>
+        <td class="t_professor">Professor 1</td>
+        <td class="t_credits">1</td>
+    </tr>
+    <tr id="row">
+        <td class="t_course">Calculus</td>
+        <td class="t_department">Mathematics</td>
+        <td class="t_professor">Professor 2</td>
+        <td class="t_credits">3</td>
+    </tr>
+    <tr id="row">
+        <td class="t_course">Super Important Class</td>
+        <td class="t_department">Super Important Department</td>
+        <td class="t_professor">Super Important Professor</td>
+        <td class="t_credits">10</td>
+    </tr>
+    <tr id="row">
+        <td class="t_course">Cooking</td>
+        <td class="t_department">Cooking Class</td>
+        <td class="t_professor">Gordon Ramsay</td>
+        <td class="t_credits">5</td>
+    </tr>
+</table>
+
+<!-- script for getting table -->
+<script>
+    let tableJson = fetch(/* table? */);
+</script>
+
+<!-- script for filtering based on filter checkboxes -->
+<script>
+    let checkProf = document.querySelector("#checkProf");
+    checkProf.addEventListener("click", checkboxFilterCourses);
+    let checkDept = document.querySelector("#checkDept");
+    checkDept.addEventListener("click", checkboxFilterCourses);
+    let checkCred = document.querySelector("#checkCred");
+    checkCred.addEventListener("click", checkboxFilterCourses);
+
+    function checkboxFilterCourses(){
+        let boxes = document.querySelectorAll("input[type=checkbox]");
+
+        for (let i = 0; i < boxes.length; i++){
+            if (boxes[i].checked == true && boxes[i] != this)
+                boxes[i].checked = false;
+        }
+        // function to filter goes here
+    }
+</script>
+
+<!-- script for filtering based on search results -->
+<script>
+    let filterInput = document.querySelector("#filterInput");
+    filterInput.addEventListener("keyup", searchFilterCourses); // filterCourses function runs everytime a key is pressed
+
+    function searchFilterCourses(){
+        let filterValue = filterInput.value.toUpperCase(); // all text is uppercased to compare
+        let rows = document.querySelectorAll("#row"); // gets all rows
+
+        for (let i = 0; i < rows.length; i++) {
+            let rowTDs = rows[i].querySelectorAll("td"); // gets all td from row[i]
+            let rowCourseText = rowTDs[0].innerHTML.toUpperCase();
+            let rowDepartmentText = rowTDs[1].innerHTML.toUpperCase();
+            let rowProfessorText = rowTDs[2].innerHTML.toUpperCase();
+            let rowCreditText = rowTDs[3].innerHTML;
+
+            if (rowCourseText.indexOf(filterValue) > -1 || // filterValue found in one of the cells
+                rowDepartmentText.indexOf(filterValue) > -1 ||
+                rowProfessorText.indexOf(filterValue) > -1 ||
+                rowCreditText.indexOf(filterValue) > -1) rows[i].style.display = "";
+            else rows[i].style.display = "none";
+        }
+    }
+</script>

@@ -2,19 +2,19 @@ let express = require('express');
 let router = express.Router();
 
 router.get('/get/:id', function(req, res){
-	res.render('id'/*, {style: '../css/style-id.css'}*/);
+	res.render('id');
 });
 
 router.get('/add', (req, res) => {
-	res.render('add', {style: '../css/style-add.css'});
+	res.render('add');
 });
 
 router.get('/delete', function(req, res){
-	res.render('delete'/*, {style: '../css/style-delete.css'}*/);
+	res.render('delete');
 });
 
 router.get('/next-semester', function(req, res){
-	res.render('next-semester'/*, {style: '../css/style-next-semester.css'}*/);
+	res.render('next-semester');
 });
 
 module.exports = router;
