@@ -3,6 +3,7 @@ const db =  require(database);
 function getUser(student)
 {
     //Find user
+
     db.query(`SELECT * FROM Student WHERE id = ${student}`, (err, res) => {
     if (err) {
       console.log("error: ", err);
@@ -19,7 +20,9 @@ function getUser(student)
   });
 }
 
-function searchClassesForUser()
+// Narrow down by department
+// WHERE Department = CSC
+function searchClassesForUser(sid)
 {
    db.query(`SELECT * FROM Courses`, function (err, res) {
     if (err)
