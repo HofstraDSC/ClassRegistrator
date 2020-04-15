@@ -35,7 +35,7 @@ function searchClassesForUser()
 
 function addCourseToUser(sid, courseID, column)
 {
-    db.query(`UPDATE Students SET {column} = ${courseID} WHERE StudentID = ${sid} FROM scheduler_data.Student`,function (err, res) {
+    db.query(`UPDATE scheduler_data.Students SET {column} = ${courseID} WHERE StudentID = ${sid}`,function (err, res) {
     if (err)
     {        
         console.log("error: ", err);
@@ -46,7 +46,7 @@ function addCourseToUser(sid, courseID, column)
 //Alonzo's
 function removeCourseFromUser(sid, courseID, column)
 {
- db.query(`UPDATE Students SET ${column} = "" WHERE StudentID = ${sid} FROM scheduler_data.Student`,function (err, res) {
+ db.query(`UPDATE scheduler_data.Students SET ${column} = "" WHERE StudentID = ${sid}`,function (err, res) {
     if (err)
     {        
         console.log("error: ", err);
