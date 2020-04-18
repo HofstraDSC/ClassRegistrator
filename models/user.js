@@ -1,17 +1,16 @@
 const db =  require(database);
 
-function getUser(student)
+function getUser(id)
 {
     //Find user
 
-    db.query(`SELECT * FROM Student WHERE id = ${student}`, (err, res) => {
+    db.query(`SELECT * FROM scheduler_data.Student WHERE StudentId = ${id}`, (err, res) => {
     if (err) {
       console.log("error: ", err);
       result(err, null);
       return;
     }
     if (res.length) {
-      console.log("Student: ", res[0]);
       result(null, res[0]);
       return;
     }
@@ -20,25 +19,23 @@ function getUser(student)
   });
 }
 
-// Narrow down by department
-// WHERE Department = CSC
-function searchClassesForUser(sid)
+
+function searchClassesForUser()
 {
-   db.query(`SELECT * FROM Courses`, function (err, res) {
+   db.query(`SELECT * FROM scheduler_data.Courses;`, function (err, res) {
     if (err)
     {        
         console.log("error: ", err);
         result(err, null);
         return;
     }
-    //Run logic to check for validity
     result(null,res);
   });
 }
 
 function addCourseToUser(sid, courseID, column)
 {
-    db.query(`UPDATE Students SET {column} = ${courseID} WHERE studentID = ${sid}`,function (err, res) {
+    db.query(`UPDATE scheduler_data.Students SET {column} = ${courseID} WHERE StudentID = ${sid}`,function (err, res) {
     if (err)
     {        
         console.log("error: ", err);
@@ -49,7 +46,7 @@ function addCourseToUser(sid, courseID, column)
 //Alonzo's
 function removeCourseFromUser(sid, courseID, column)
 {
- db.query(`UPDATE Students SET ${column} = "" WHERE studentID = ${sid}`,function (err, res) {
+ db.query(`UPDATE scheduler_data.Students SET ${column} = "" WHERE StudentID = ${sid}`,function (err, res) {
     if (err)
     {        
         console.log("error: ", err);
