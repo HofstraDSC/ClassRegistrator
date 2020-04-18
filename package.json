@@ -17,6 +17,8 @@
     "cookie-parser": "^1.4.1",
     "express": "*",
     "express-handlebars": "*",
+    "mysql": "^2.18.1",
+    "mysql-promise": "^5.0.0",
     "promise-mysql": "^4.1.3"
   }
 }

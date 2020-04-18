@@ -5,7 +5,7 @@ let path = require('path');
 let exphbs = require('express-handlebars');
 
 let routes = require('./routes/index');
-//let users = require('./routes/users');
+let users = require('./routes/user');
 
 var app = express();
 
