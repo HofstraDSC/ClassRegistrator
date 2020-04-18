@@ -1,0 +1,15 @@
+//Get username
+//Login to database
+//Get user id
+//Send to database
+//Fetch all courses available
+
+4 api calls
+getUser
+searchClassesForUser
+addCOurseToUser
+removeCourseFromUser
+
+//ALl code goes in models/user.js
+//Postmans, get/post requests
+node app.js
