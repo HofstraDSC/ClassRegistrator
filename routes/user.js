@@ -42,34 +42,28 @@ function searchClassesForUser() {
     mysql.query();
 }
 
-router.get('/student/add', (req, res) => {
+router.get('url/add', (req, res) => {
 //Add a new course to student's table
-    function addCourseToUser(mysql, student){
-        let newCourse = `INSERT INTO ${student} VALUES ${req.params.id}`;
-        mysql.query(newCourse,(err, res) => {
-            if(err) {
-                console.log('Error: ', err);
+    function addCourseToUser(sid, courseID, column) {
+        db.query(`UPDATE scheduler_data.Students SET {column} = ${courseID} WHERE StudentID = ${sid}`, function (err, res) {
+            if (err) {
+                console.log("error: ", err);
                 result(err, null);
                 return;
-            }
-            console.log(`Added the course ${req.params.id}!`);
-        });
+            });
     }
-    res.send(newCourse);
+       
 });
 
 //Remove an existing course from the student's table
 router.get('/student/delete', (req, res) => {
-    function removeCourseFromUser(mysql, student){
-        let removedCourse = `DELETE FROM ${student} WHERE course = ${req.params.id}`;
-        mysql.query(removedCourse, (err, res) => {
-            if(err){
-                console.log('Error:', err);
-                result(err, null);
-                res.status(400).send();
-            }
-            console.log(`Removed ${req.params.id} from ${student}!`);
-        });
+    function removeCourseFromUser(sid, courseID, column){
+    db.query(`UPDATE scheduler_data.Students SET ${column} = "" WHERE StudentID = ${sid}`, function (err, res) {
+        if (err) {
+            console.log("error: ", err);
+            result(err, null);
+            return;
+        });   
+        }
     }
-    res.send(removedCourse);
-});
+}
