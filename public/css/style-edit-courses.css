@@ -1,10 +1,14 @@
+/* { border: 1px solid red; }*/
+
 html {
     margin: 0 auto;
     height: 100%;
 }
 
 body {
-    background-image: linear-gradient(#ff0000, #fff);
+    background-image: linear-gradient(white, #ff3f00);
+    overflow: hidden;
+    height: 100%;
 }
 
 .center {
@@ -12,7 +16,25 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    text-align: center;
     margin: 0 auto;
     font-family: Tahoma, Verdana, Geneva, sans-serif;
+}
+
+input {
+    min-width: 13%;
+    text-align: center;
+}
+
+table {
+    background-color: white;
+    border: 2px solid black;
+    text-align: center;
+    width: 80%;
+    padding: 5px;
+    margin: 0 auto;
+    font-family: Tahoma, Verdana, Geneva, sans-serif;
+}
+
+td, th {
+    border: 2px solid black;
 }

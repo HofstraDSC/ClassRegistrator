@@ -1,22 +1,35 @@
+/* { border: 1px solid red; }*/
+
 html {
-    margin: 0 auto;
     height: 100%;
 }
 
 body {
-    background-image: linear-gradient(0deg, #fff000, #00aaff);
+    background: linear-gradient(#fff000, #00aaff);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    height: 92.5%;
 }
 
 .center {
+    opacity: 0;
+    transition: opacity 2s;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
-    text-align: center;
-    margin: 0 auto;
     font-family: Tahoma, Verdana, Geneva, sans-serif;
 }
 
-a {
-    display: block;
+.center.fade {
+    opacity: 1;
+}
+
+h1, p {
+    margin: 0;
+}
+
+input {
+    text-align: center;
 }

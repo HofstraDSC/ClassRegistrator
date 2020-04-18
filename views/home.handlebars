@@ -1,1 +1,27 @@
-<p>hi this is home :)</p>
+<div class="content">
+    <h1>Welcome, **NAME**</h1>
+    <div id="buttons">
+        <div class="button" id="see">
+            <h2>See Courses</h2>
+        </div>
+        <div class="button" id="edit">
+            <h2>Edit Courses</h2>
+        </div>
+    </div>
+</div>
+
+<!-- redirection script -->
+<script>
+    let body = document.querySelector("body");
+    body.classList.toggle('fade');
+
+    let buttonSee = document.querySelector("#see");
+    buttonSee.addEventListener("click", function(){
+        window.location = "/course-list";
+    });
+
+    let buttonEdit = document.querySelector("#edit");
+    buttonEdit.addEventListener("click", function(){
+        window.location = "/edit-courses";
+    });
+</script>

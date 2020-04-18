@@ -1,15 +1,21 @@
-<h1 class="center">Hello</h1>
-<p class="center">What is your name?</p>
-<input id="enterInput" class="center" type="text"/>
-<a id="submitB">
-    <button class="center">Submit</button>
-</a>
+<div class="center">
+    <h1>Hello</h1>
+    <p>What is your name?</p>
+    <input id="enterInput" type="text"/>
+    <a id="submitB">
+        <button>Submit</button>
+    </a>
+</div>
+
 <script>
+    let centerClass = document.querySelector(".center");
+    centerClass.classList.toggle('fade');
+    
     let enterInput = document.querySelector("#enterInput");
     enterInput.onkeypress = function enterRedirect(char){ if (char.which == 13) redirect(); }
 
     let submitB = document.querySelector("#submitB");
     submitB.addEventListener("click", redirect);
 
-    function redirect(){ window.location = "/course-list"; }
+    function redirect(){ window.location = "/home"; }
 </script>

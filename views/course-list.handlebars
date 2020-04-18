@@ -1,10 +1,14 @@
-<h1 class="center">Enter your course here</h1>
-<input class="center" id="filterInput" type="text"/>
-<p class="center">Filter by:</p>
-<div id="check">
-    <input id="checkProf" type="checkbox">Professor</input>
-    <input id="checkDept" type="checkbox">Department</input>
-    <input id="checkCred" type="checkbox">Credits</input>
+<h1 class="center">Courses</h1>
+<div id="courseEdit">
+    <div>
+        <input id="filterInput" type="text" placeholder="Enter your course here"/>
+    </div>
+    <div id="filterButtons">
+        <p>Filter by:</p>
+        <button id="checkProf">Professor</button>
+        <button id="checkDept">Department</button>
+        <button id="checkCred">Credits</button>
+    </div>
 </div>
 <table>
     <tr id="rowH">
@@ -54,7 +58,7 @@
     checkCred.addEventListener("click", checkboxFilterCourses);
 
     function checkboxFilterCourses(){
-        let boxes = document.querySelectorAll("input[type=checkbox]");
+        let boxes = document.querySelectorAll("button");
 
         for (let i = 0; i < boxes.length; i++){
             if (boxes[i].checked == true && boxes[i] != this)
@@ -74,6 +78,7 @@
         let rows = document.querySelectorAll("#row"); // gets all rows
 
         for (let i = 0; i < rows.length; i++) {
+
             let rowTDs = rows[i].querySelectorAll("td"); // gets all td from row[i]
             let rowCourseText = rowTDs[0].innerHTML.toUpperCase();
             let rowDepartmentText = rowTDs[1].innerHTML.toUpperCase();
@@ -87,4 +92,10 @@
             else rows[i].style.display = "none";
         }
     }
+</script>
+
+<!-- script for making another page if there are too many results -->
+<script>
+    let tableHeight = document.querySelectorAll("#row");
+    if (rows.length >= 2) console.log(rows);
 </script>
