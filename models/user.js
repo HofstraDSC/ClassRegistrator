@@ -1,5 +1,5 @@
 const db =  require(database);
-
+//Requires parameter for user id
 function getUser(id)
 {
     //Find user
@@ -19,7 +19,7 @@ function getUser(id)
   });
 }
 
-
+//Requires no parameters
 function searchClassesForUser()
 {
    db.query(`SELECT * FROM scheduler_data.Courses;`, function (err, res) {
@@ -32,7 +32,7 @@ function searchClassesForUser()
     result(null,res);
   });
 }
-
+//Requires parameters for student id, course id and column index
 function addCourseToUser(sid, courseID, column)
 {
     db.query(`UPDATE scheduler_data.Students SET {column} = ${courseID} WHERE StudentID = ${sid}`,function (err, res) {
@@ -43,7 +43,7 @@ function addCourseToUser(sid, courseID, column)
         return;
     });
 }
-//Alonzo's
+//Requires parameters for student id, course id and column index
 function removeCourseFromUser(sid, courseID, column)
 {
  db.query(`UPDATE scheduler_data.Students SET ${column} = "" WHERE StudentID = ${sid}`,function (err, res) {
