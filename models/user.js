@@ -1,4 +1,4 @@
-const db =  require(database);
+const db =  require('../models/database');
 //Requires parameter for user id
 function getUser(id)
 {
@@ -41,7 +41,7 @@ function addCourseToUser(sid, courseID, column)
         console.log("error: ", err);
         result(err, null);
         return;
-    });
+    }});
 }
 //Requires parameters for student id, course id and column index
 function removeCourseFromUser(sid, courseID, column)
@@ -52,5 +52,5 @@ function removeCourseFromUser(sid, courseID, column)
         console.log("error: ", err);
         result(err, null);
         return;
-    });   
+    }});
 }

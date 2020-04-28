@@ -1,3 +1,4 @@
+<head><link href="../public/css/style-course-list.css" rel="stylesheet" type="text/css"></head>
 <h1 class="center">Courses</h1>
 <div id="courseEdit">
     <div>
@@ -45,7 +46,8 @@
 
 <!-- script for getting table -->
 <script>
-    let tableJson = fetch(/* table? */);
+    let table = fetch('/student/course-list')
+    console.log(table);
 </script>
 
 <!-- script for filtering based on filter checkboxes -->

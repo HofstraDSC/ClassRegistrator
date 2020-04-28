@@ -1,6 +1,6 @@
 <div class="center">
     <h1>Hello</h1>
-    <p>What is your name?</p>
+    <p>What is your ID?</p>
     <input id="enterInput" type="text"/>
     <a id="submitB">
         <button>Submit</button>
@@ -17,5 +17,11 @@
     let submitB = document.querySelector("#submitB");
     submitB.addEventListener("click", redirect);
 
-    function redirect(){ window.location = "/home"; }
+    function redirect(){
+        let ID = enterInput.value;
+        let response = fetch('student/:'+ID);
+        console.log(response);
+        if (response)
+            window.location = "/home";
+    }
 </script>
