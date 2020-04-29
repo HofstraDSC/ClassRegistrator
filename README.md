@@ -23,7 +23,8 @@ Filters out all the classes you don't need while searching for your classes.
 ------
 
 ### Built with 
-- Node.js - used to connect the website to the database and to filter the search
+- Node.js - used to filter the search 
+- Express - used connect the website to the database on the backend
 - Visual Studio - used to make and style the website
 - MySQL Server and Workbench - used to provide a dummy database to test the search algorithm
 
