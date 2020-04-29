@@ -1,6 +1,6 @@
 # ClassRegistrator
-Filter out all the classes you don't need when searching for classes.
-------
+Filters out all the classes you don't need using a search for your classes.
+
 
 ### Prerequisites
    What things you need to install the software and how to install them
@@ -9,7 +9,7 @@ Filter out all the classes you don't need when searching for classes.
   If you would like to make your own database, we recommend installing MySQL Server and workbench using the link   <https://dev.mysql.com/doc/workbench/en/wb-installing.html>.
   Select the installation process that corresponds with your operating system and follow the steps
 	  
-	
+####
 ------
 	
 ### How the Code Works
