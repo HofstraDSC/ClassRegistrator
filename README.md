@@ -9,13 +9,12 @@ Filters out all the classes you don't need using a search for your classes.
   If you would like to make your own database, we recommend installing MySQL Server and workbench using the link   <https://dev.mysql.com/doc/workbench/en/wb-installing.html>.
   Select the installation process that corresponds with your operating system and follow the steps
 	  
-####
 ------
 	
 ### How the Code Works
 
 #### Frontend
-     The website should display the classes that result after you input your search through the filter.
+   The website should display the classes that result after you input your search through the filter.
      
 ------	
 	
@@ -24,25 +23,25 @@ Filters out all the classes you don't need using a search for your classes.
 ------
 
 ### Built with 
-    - Node.js - used to connect the website to the database and to filter the search
-    - Visual Studio - used to make and style the website
-    - MySQL Server and Workbench - used to provide a dummy database to test the search algorithm
+- Node.js - used to connect the website to the database and to filter the search
+- Visual Studio - used to make and style the website
+- MySQL Server and Workbench - used to provide a dummy database to test the search algorithm
 
 ------
 
 ### Authors
 
-    - Dalton Leight - Project Lead
-    - Alonzo Gonzalez - Backend Programmer
-    - Jayson Mendoza - Frontend Programmer
-    - Renan Charles-Pierre - Frontend Programmer
-    - Franklin "Hina" Chen - Database Management/Misc.
-    - Aihra Villarreiz - Database Management/Misc
+- Dalton Leight - Project Lead
+- Alonzo Gonzalez - Backend Programmer
+- Jayson Mendoza - Frontend Programmer
+- Renan Charles-Pierre - Frontend Programmer
+- Franklin "Hina" Chen - Database Management/Misc.
+- Aihra Villarreiz - Database Management/Misc
 
 ------
 
 ### Project Status
-    We are still working to get the software to run properly.
+   We are still working to get the software to run properly.
 	
 
 
