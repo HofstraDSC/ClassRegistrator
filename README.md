@@ -3,9 +3,7 @@ Filter out all the classes you don't need when searching for classes.
 ---
 
 ### Prerequisites
-   '''
-    What things you need to install the software and how to install them 
-   '''
+   '''What things you need to install the software and how to install them'''
    
 	#### Database 
 	  '''
