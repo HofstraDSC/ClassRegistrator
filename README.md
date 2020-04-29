@@ -25,20 +25,20 @@ Filter out all the classes you don't need when searching for classes.
 ---
 
 ### Built with 
-    -Node.js - used to connect the website to the database and to filter the search
-    -Visual Studio - used to make and style the website
-    -MySQL Server and Workbench - used to provide a dummy database to test the search algorithm
+    - Node.js - used to connect the website to the database and to filter the search
+    - Visual Studio - used to make and style the website
+    - MySQL Server and Workbench - used to provide a dummy database to test the search algorithm
 
 ---
 
 ### Authors
 
-    +Dalton - Project Lead
-    -Alonzo Gonzalez - Backend Programmer
-    -Jayson Mendoza - Frontend Programmer
-    -Renan Charles-Pierre - Frontend Programmer
-    -Franklin "Hina" Chen - Database Management/Misc.
-    -Aihra Villarreiz - Database Management/Misc
+    - Dalton Leight - Project Lead
+    - Alonzo Gonzalez - Backend Programmer
+    - Jayson Mendoza - Frontend Programmer
+    - Renan Charles-Pierre - Frontend Programmer
+    - Franklin "Hina" Chen - Database Management/Misc.
+    - Aihra Villarreiz - Database Management/Misc
 
 ---
 
