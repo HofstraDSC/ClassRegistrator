@@ -1,5 +1,5 @@
 # ClassRegistrator
-Filters out all the classes you don't need using a search for your classes.
+Filters out all the classes you don't need while searching for your classes.
 
 
 ### Prerequisites
