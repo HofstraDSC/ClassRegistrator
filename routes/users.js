@@ -1,67 +1,85 @@
 const express = require("express");
-const mysql = require("mysql");
 const router = express.Router();
 
 const app = express();
-const port = 3306;
 
-//Establish connection
-let connection = mysql.createConnection({
-    host: '35.243.218.252',
-    user: 'root',
-    password: 'hofstradsc2020',
-    database: 'scheduler_data'
-})
+let user = require('../models/user');
 
-connection.connect(function(err){
-    if(err) throw err;
-    console.log('Connected to the database');
-})
-
-
-function getUser(mysql, student) {
-    //Find user
-    mysql.query(`SELECT * FROM table WHERE id = ${student}`, (err, res) => {
-        if (err) {
-            console.log("error: ", err);
-            result(err, null);
-            return;
-        }
-        if (res.length) {
-            console.log("Student: ", res[0]);
-            result(null, res[0]);
-            return;
-        }
-        //Student not found
-        result({ kind: "not_found" }, null);
-    });
-}
-
-
-function searchClassesForUser() {
-    mysql.query();
-}
-
-router.get('url/add', (req, res) => {
-//Add a new course to student's table
-    function addCourseToUser(sid, courseID, column) {
-        db.query(`UPDATE scheduler_data.Students SET {column} = ${courseID} WHERE StudentID = ${sid}`, function (err, res) {
-            if (err) {
-                console.log("error: ", err);
-                result(err, null);
-                return;
-            }});
-    } 
-});
-
-//Remove an existing course from the student's table
-router.get('/student/delete', (req, res) => {
-    function removeCourseFromUser(sid, courseID, column){
-    db.query(`UPDATE scheduler_data.Students SET ${column} = "" WHERE StudentID = ${sid}`, function (err, res) {
-        if (err) {
-            console.log("error: ", err);
-            result(err, null);
-            return;
-		}});
+router.get('/student/:id', async function(req,res){
+	try{
+		const result = await user.getUser(req.params.id);
+		if(result.length === 0){
+			throw Error('No user');
+		}
+		return res.status(200).send(result[0])
+	}catch(error){
+		console.error(error);
+		return res.status(400).send({
+			message: 'Could not get user'
+		})
 	}
 });
+
+router.get('/courses/all', async (req, res) =>{
+	try{
+		const result = await user.searchClassesForUser();
+		if(result.length === 0){
+			throw Error('No Courses');
+		}
+		return res.status(200).send(result)
+	}catch(error){
+		console.error(error);
+		return res.status(400).send({
+			message: 'Could not get courses'
+		})
+	}
+});
+
+router.get('/student/course-list/:id', async function(req,res){
+	try{
+		const result = await user.getCoursesfromUser(req.params.id);
+		if(result.length === 0){
+			throw Error('No Courses');
+		}
+		return res.status(200).send(result)
+	}catch(error){
+		console.error(error);
+		return res.status(400).send({
+			message: 'Could not get courses'
+		})
+	}
+});
+
+router.post('/student/edit-courses', async function(req,res){
+	try{
+		const result = await user.addCourseToUser(req.body.id, req.body.courseId);
+		if(result){
+			return res.status(204).send()
+		}else{
+			throw Error('Failed to add course')
+		}
+	}catch(error){
+		console.error(error);
+		return res.status(400).send({
+			message: 'Could not add course'
+		})
+	}
+});
+
+router.delete('/student/edit-courses', async function(req,res){
+	try{
+		const result = await user.removeCourseFromUser(req.body.id, req.body.courseId);
+		if(result){
+			return res.status(204).send()
+		}else{
+			throw Error('Failed to delete course')
+		}
+	}catch(error){
+		console.error(error);
+		return res.status(400).send({
+			message: 'Could not delete course'
+		})
+	}
+});
+
+module.exports = router;
