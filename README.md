@@ -6,7 +6,8 @@ Filter out all the classes you don't need when searching for classes.
     What things you need to install the software and how to install them
    
 #### Database 
-     If you would like to make your own database, we recommend installing MySQL Server and workbench using this        link, <https://dev.mysql.com/doc/workbench/en/wb-installing.html>.
+     If you would like to make your own database, we recommend installing MySQL Server and workbench using the link: 
+ *<https://dev.mysql.com/doc/workbench/en/wb-installing.html>.*
      Select the installation process that corresponds with your operating system and follow the steps
 	  
 	
