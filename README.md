@@ -84,7 +84,7 @@ function removeCourseFromUser(sid, courseID, column)
 ---
 
 ### Built with 
-- Node.js - used to filter the search 
+- Node.js - used to create the filter function to produce an output of classes based on user's search
 - Express - used connect the website to the database on the backend
 - Visual Studio - used to make and style the website
 - MySQL Server and Workbench - used to provide a dummy database to test the search algorithm
