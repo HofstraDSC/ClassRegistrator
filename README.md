@@ -103,7 +103,7 @@ function removeCourseFromUser(sid, courseID, column)
 ---
 
 ### Project Status
-   We are still working to get the software to run properly.
+   We are still working to get the software.
 	
 
 
