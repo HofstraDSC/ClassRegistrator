@@ -10,4 +10,5 @@ var connection = mysql.createConnection({
   password: 'hofstradsc2020',
   database: 'scheduler_data'
 })
-connection.connect()
+connection.connect();
+module.exports = connection
