@@ -12,7 +12,7 @@ Filters out all the classes you don't need while searching for your classes.
 ---
 	
 ### How the Code Works
-'''javascript
+```javascript
 const db =  require(database);
 //Requires parameter for user id
 function getUser(id)
@@ -69,7 +69,7 @@ function removeCourseFromUser(sid, courseID, column)
         return;
     });   
 }
-'''
+```
 
 #### Frontend
    The website should display the classes that result after you input your search through the filter.
