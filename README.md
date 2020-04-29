@@ -33,7 +33,7 @@ Filter out all the classes you don't need when searching for classes.
 
 ### Authors
 
-    -Dalton - Project Lead
+    +Dalton - Project Lead
     -Alonzo Gonzalez - Backend Programmer
     -Jayson Mendoza - Frontend Programmer
     -Renan Charles-Pierre - Frontend Programmer
