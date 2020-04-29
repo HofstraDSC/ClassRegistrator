@@ -12,6 +12,7 @@ Filters out all the classes you don't need while searching for your classes.
 ---
 	
 ### How the Code Works
+#### Backend
 The below code can be found under the file, __user.js__, and is intended to route information from the database to the website in order for the user to view the classes that matched their search on the database. 
 
 ```javascript
