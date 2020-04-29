@@ -18,11 +18,10 @@
     submitB.addEventListener("click", redirect);
 
     function redirect(){
-        console.log("uh");
         let ID = enterInput.value;
-        let response = fetch('student/:'+ID);
+        let response = fetch('student/'+ID);
         console.log(response);
-        if (response)
-            window.location = "/home";
+        //if (response)
+        //    window.location = "/home";
     }
 </script>
