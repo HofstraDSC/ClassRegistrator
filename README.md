@@ -32,12 +32,12 @@ Filters out all the classes you don't need while searching for your classes.
 
 ### Authors
 
-- Dalton Leight - Project Lead
-- Alonzo Gonzalez - Backend Programmer
-- Jayson Mendoza - Frontend Programmer
-- Renan Charles-Pierre - Frontend Programmer
-- Franklin "Hina" Chen - Database Management/Misc.
-- Aihra Villarreiz - Database Management/Misc
+- _Dalton Leight_ - Project Lead
+- _Alonzo Gonzalez_ - Backend Programmer
+- _Jayson Mendoza_ - Frontend Programmer
+- _Renan Charles-Pierre_ - Frontend Programmer
+- _Franklin "Hina" Chen_ - Database Management/Misc.
+- _Aihra Villarreiz_ - Database Management/Misc
 
 ------
 
