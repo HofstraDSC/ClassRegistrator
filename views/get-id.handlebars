@@ -17,12 +17,12 @@
     let submitB = document.querySelector("#submitB");
     submitB.addEventListener("click", redirect);
 
-    function redirect(){
-        console.log("uh");
+    async function redirect(){
         let ID = enterInput.value;
-        let response = fetch('student/:'+ID);
-        console.log(response);
-        if (response)
-            window.location = "/home";
+        let response = await fetch('student/'+ID);
+        let content = await response.json();
+        console.log(content.message);
+        if (content.message == "Could not get user") console.log("Could not get user");
+        else window.location = "/home"; // figure out how to load name in home ig
     }
 </script>

@@ -12,41 +12,33 @@
 </div>
 <table>
     <tr id="rowH">
+        <th>CRN</th>
         <th>Course</th>
         <th>Department</th>
         <th>Professor</th>
         <th>Credits</th>
     </tr>
-    <tr id="row">
-        <td class="t_course">Intro to Computer Architecture</td>
-        <td class="t_department">Computer Science</td>
-        <td class="t_professor">Professor 1</td>
-        <td class="t_credits">1</td>
-    </tr>
-    <tr id="row">
-        <td class="t_course">Calculus</td>
-        <td class="t_department">Mathematics</td>
-        <td class="t_professor">Professor 2</td>
-        <td class="t_credits">3</td>
-    </tr>
-    <tr id="row">
-        <td class="t_course">Super Important Class</td>
-        <td class="t_department">Super Important Department</td>
-        <td class="t_professor">Super Important Professor</td>
-        <td class="t_credits">10</td>
-    </tr>
-    <tr id="row">
-        <td class="t_course">Cooking</td>
-        <td class="t_department">Cooking Class</td>
-        <td class="t_professor">Gordon Ramsay</td>
-        <td class="t_credits">5</td>
-    </tr>
 </table>
 
 <!-- script for getting table -->
 <script>
-    let table = fetch('/student/course-list');
-    console.log(table);
+    let main = async function(){
+        let response = await fetch('/courses/all');
+        let tableContent = await response.json();
+        
+        let table = document.querySelector("table");
+        for (let i = 1; i < tableContent.length; i++){
+            let txtTdCRN = "<td class=\"t_CRN\">"+ (tableContent[i]["CRN"]) +"</td>";
+            let txtTdCourse = "<td class=\"t_course\">"+ (tableContent[i]["Course Name"]) +"</td>";
+            let txtTdDepartment = "<td class=\"t_department\">"+ (tableContent[i]["Department"]) +"</td>";
+            let txtTdProfessor = "<td class=\"t_professor\">"+ (tableContent[i]["Professor Name"]) +"</td>";
+            let txtTdCredits = "<td class=\"t_credits\">"+ (tableContent[i]["Credits"]) +"</td>";
+
+            let txtTr = "<tr id=\"row\">" + txtTdCRN + txtTdCourse + txtTdDepartment + txtTdProfessor + txtTdCredits + "</tr>";
+            table.innerHTML += txtTr;
+        }
+    }
+    main();
 </script>
 
 <!-- script for filtering based on filter checkboxes -->
@@ -74,19 +66,21 @@
     let filterInput = document.querySelector("#filterInput");
     filterInput.addEventListener("keyup", searchFilterCourses); // filterCourses function runs everytime a key is pressed
 
-    function searchFilterCourses(){
+    async function searchFilterCourses(){
         let filterValue = filterInput.value.toUpperCase(); // all text is uppercased to compare
         let rows = document.querySelectorAll("#row"); // gets all rows
-
+        console.log(rows);
         for (let i = 0; i < rows.length; i++) {
 
             let rowTDs = rows[i].querySelectorAll("td"); // gets all td from row[i]
-            let rowCourseText = rowTDs[0].innerHTML.toUpperCase();
-            let rowDepartmentText = rowTDs[1].innerHTML.toUpperCase();
-            let rowProfessorText = rowTDs[2].innerHTML.toUpperCase();
-            let rowCreditText = rowTDs[3].innerHTML;
+            let rowCRNText = rowTDs[0].innerHTML;
+            let rowCourseText = rowTDs[1].innerHTML.toUpperCase();
+            let rowDepartmentText = rowTDs[2].innerHTML.toUpperCase();
+            let rowProfessorText = rowTDs[3].innerHTML.toUpperCase();
+            let rowCreditText = rowTDs[4].innerHTML;
 
-            if (rowCourseText.indexOf(filterValue) > -1 || // filterValue found in one of the cells
+            if (rowCRNText.indexOf(filterValue) > -1 ||
+                rowCourseText.indexOf(filterValue) > -1 || // filterValue found in one of the cells
                 rowDepartmentText.indexOf(filterValue) > -1 ||
                 rowProfessorText.indexOf(filterValue) > -1 ||
                 rowCreditText.indexOf(filterValue) > -1) rows[i].style.display = "";
@@ -95,8 +89,8 @@
     }
 </script>
 
-<!-- script for making another page if there are too many results -->
+<!-- script for making another page if there are too many results 
 <script>
     let tableHeight = document.querySelectorAll("#row");
     if (rows.length >= 2) console.log(rows);
-</script>
+</script>-->

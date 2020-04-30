@@ -1,2 +1,4 @@
 /node_modules/*
 /.vs/*
+database/database.js
+models/user.js
