@@ -60,7 +60,59 @@ module.exports = {
 
 #### Frontend
    The website should display the classes that result after you input your search through the filter.
-     
+     <!-- script for getting table -->
+```HTML
+<script>
+    let table = fetch('/student/course-list');
+    console.log(table);
+</script>
+
+<!-- script for filtering based on filter checkboxes -->
+<script>
+    let checkProf = document.querySelector("#checkProf");
+    checkProf.addEventListener("click", checkboxFilterCourses);
+    let checkDept = document.querySelector("#checkDept");
+    checkDept.addEventListener("click", checkboxFilterCourses);
+    let checkCred = document.querySelector("#checkCred");
+    checkCred.addEventListener("click", checkboxFilterCourses);
+    function checkboxFilterCourses(){
+        let boxes = document.querySelectorAll("button");
+        for (let i = 0; i < boxes.length; i++){
+            if (boxes[i].checked == true && boxes[i] != this)
+                boxes[i].checked = false;
+        }
+        // function to filter goes here
+    }
+</script>
+
+<!-- script for filtering based on search results -->
+<script>
+    let filterInput = document.querySelector("#filterInput");
+    filterInput.addEventListener("keyup", searchFilterCourses); // filterCourses function runs everytime a key is pressed
+    function searchFilterCourses(){
+        let filterValue = filterInput.value.toUpperCase(); // all text is uppercased to compare
+        let rows = document.querySelectorAll("#row"); // gets all rows
+        for (let i = 0; i < rows.length; i++) {
+            let rowTDs = rows[i].querySelectorAll("td"); // gets all td from row[i]
+            let rowCourseText = rowTDs[0].innerHTML.toUpperCase();
+            let rowDepartmentText = rowTDs[1].innerHTML.toUpperCase();
+            let rowProfessorText = rowTDs[2].innerHTML.toUpperCase();
+            let rowCreditText = rowTDs[3].innerHTML;
+            if (rowCourseText.indexOf(filterValue) > -1 || // filterValue found in one of the cells
+                rowDepartmentText.indexOf(filterValue) > -1 ||
+                rowProfessorText.indexOf(filterValue) > -1 ||
+                rowCreditText.indexOf(filterValue) > -1) rows[i].style.display = "";
+            else rows[i].style.display = "none";
+        }
+    }
+</script>
+
+<!-- script for making another page if there are too many results -->
+<script>
+    let tableHeight = document.querySelectorAll("#row");
+    if (rows.length >= 2) console.log(rows);
+</script>
+```
 ---	
 	
 ### Running the Tests
