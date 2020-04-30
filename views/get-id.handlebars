@@ -5,6 +5,7 @@
     <a id="submitB">
         <button>Submit</button>
     </a>
+    <p id="errorMsg">ID not in database.</p>
 </div>
 
 <script>
@@ -21,8 +22,16 @@
         let ID = enterInput.value;
         let response = await fetch('student/'+ID);
         let content = await response.json();
-        console.log(content.message);
-        if (content.message == "Could not get user") console.log("Could not get user");
-        else window.location = "/home"; // figure out how to load name in home ig
+
+        if (content.message == "Could not get user"){
+            console.log("Could not get user");
+            let errorMsg = document.querySelector("#errorMsg");
+            errorMsg.style.display = "inline";
+        }else{
+            localStorage.setItem("ID", ID);
+            if (content["StudentName"] != undefined)
+                localStorage.setItem("StudentName", content["StudentName"]);
+            window.location = "/home";
+        }
     }
 </script>

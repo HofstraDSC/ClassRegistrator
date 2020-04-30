@@ -24,4 +24,11 @@
     buttonEdit.addEventListener("click", function(){
         window.location = "/edit-courses";
     });
+
+    console.log("hm");
+    if (localStorage.getItem("StudentName") != undefined){
+        let h1 = document.querySelector("h1");
+        console.log("hmm");
+        h1.innerHTML += ", " + localStorage.getItem("StudentName");
+    }
 </script>

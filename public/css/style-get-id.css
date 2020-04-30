@@ -13,6 +13,11 @@ body {
     height: 92.5%;
 }
 
+#errorMsg {
+    color: red;
+    display: none;
+}
+
 .center {
     opacity: 0;
     transition: opacity 2s;

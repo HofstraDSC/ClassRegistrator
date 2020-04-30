@@ -12,6 +12,7 @@
 </div>
 <table>
     <tr id="rowH">
+        <th>Course ID</th>
         <th>CRN</th>
         <th>Course</th>
         <th>Department</th>
@@ -23,18 +24,20 @@
 <!-- script for getting table -->
 <script>
     let main = async function(){
+        let table = document.querySelector("table");
+
         let response = await fetch('/courses/all');
         let tableContent = await response.json();
         
-        let table = document.querySelector("table");
         for (let i = 1; i < tableContent.length; i++){
-            let txtTdCRN = "<td class=\"t_CRN\">"+ (tableContent[i]["CRN"]) +"</td>";
-            let txtTdCourse = "<td class=\"t_course\">"+ (tableContent[i]["Course Name"]) +"</td>";
-            let txtTdDepartment = "<td class=\"t_department\">"+ (tableContent[i]["Department"]) +"</td>";
-            let txtTdProfessor = "<td class=\"t_professor\">"+ (tableContent[i]["Professor Name"]) +"</td>";
-            let txtTdCredits = "<td class=\"t_credits\">"+ (tableContent[i]["Credits"]) +"</td>";
+            let txtTdID = "<td class=\"t_ID\">" + (tableContent[i]["CourseId"]) + "</td>";
+            let txtTdCRN = "<td class=\"t_CRN\">" + (tableContent[i]["CRN"]) + "</td>";
+            let txtTdCourse = "<td class=\"t_course\">" + (tableContent[i]["Course Name"]) + "</td>";
+            let txtTdDepartment = "<td class=\"t_department\">" + (tableContent[i]["Department"]) + "</td>";
+            let txtTdProfessor = "<td class=\"t_professor\">" + (tableContent[i]["Professor Name"]) + "</td>";
+            let txtTdCredits = "<td class=\"t_credits\">" + (tableContent[i]["Credits"]) +"</td>";
 
-            let txtTr = "<tr id=\"row\">" + txtTdCRN + txtTdCourse + txtTdDepartment + txtTdProfessor + txtTdCredits + "</tr>";
+            let txtTr = "<tr id=\"row\">" + txtTdID + txtTdCRN + txtTdCourse + txtTdDepartment + txtTdProfessor + txtTdCredits + "</tr>";
             table.innerHTML += txtTr;
         }
     }
@@ -73,13 +76,15 @@
         for (let i = 0; i < rows.length; i++) {
 
             let rowTDs = rows[i].querySelectorAll("td"); // gets all td from row[i]
-            let rowCRNText = rowTDs[0].innerHTML;
-            let rowCourseText = rowTDs[1].innerHTML.toUpperCase();
-            let rowDepartmentText = rowTDs[2].innerHTML.toUpperCase();
-            let rowProfessorText = rowTDs[3].innerHTML.toUpperCase();
-            let rowCreditText = rowTDs[4].innerHTML;
+            let rowIDText = rowTDs[0].innerHTML;
+            let rowCRNText = rowTDs[1].innerHTML;
+            let rowCourseText = rowTDs[2].innerHTML.toUpperCase();
+            let rowDepartmentText = rowTDs[3].innerHTML.toUpperCase();
+            let rowProfessorText = rowTDs[4].innerHTML.toUpperCase();
+            let rowCreditText = rowTDs[5].innerHTML;
 
-            if (rowCRNText.indexOf(filterValue) > -1 ||
+            if (rowIDText.indexOf(filterValue) > -1 ||
+                rowCRNText.indexOf(filterValue) > -1 ||
                 rowCourseText.indexOf(filterValue) > -1 || // filterValue found in one of the cells
                 rowDepartmentText.indexOf(filterValue) > -1 ||
                 rowProfessorText.indexOf(filterValue) > -1 ||

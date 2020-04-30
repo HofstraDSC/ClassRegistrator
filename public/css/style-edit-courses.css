@@ -11,18 +11,15 @@ body {
     height: 100%;
 }
 
-.center {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin: 0 auto;
-    font-family: Tahoma, Verdana, Geneva, sans-serif;
+button, select {
+    margin: 5px;
 }
 
 input {
     min-width: 13%;
     text-align: center;
+    margin: 5px;
+    border: 2px solid black;
 }
 
 table {
@@ -37,4 +34,19 @@ table {
 
 td, th {
     border: 2px solid black;
+}
+
+#editStation {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.center {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    font-family: Tahoma, Verdana, Geneva, sans-serif;
 }

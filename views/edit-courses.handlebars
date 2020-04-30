@@ -1,24 +1,64 @@
 <h1 class="center">Your Courses:</h1>
-<input class="center" placeholder="Enter the course you want to delete" type="text"/>
+<div id="editStation">
+    <input id="CRNInput" placeholder="Enter the course you want to edit" type="text"/>
+    <select id="editDropdown">
+        <option>Insert</option>
+        <option>Delete</option>
+    </select>
+    <button id="submitB">Submit</button>
+</div>
 <table>
     <tr id="rowH">
+        <th>Course ID</th>
         <th>CRN</th>
         <th>Course</th>
         <th>Department</th>
         <th>Professor</th>
         <th>Credits</th>
     </tr>
-    <tr id="row">
-        <td class="t_CRN">99999</td>
-        <td class="t_course">Cooking</td>
-        <td class="t_department">Cooking Class</td>
-        <td class="t_professor">Gordon Ramsay</td>
-        <td class="t_credits">5</td>
-    </tr>
 </table>
 
 <script>
-    let response = await fetch("/student/edit-courses/"+ID);
-    let content = response.json();
-    console.log(content);
+    // code to load table
+    let loadTable = async function(){
+        let table = document.querySelector("table");
+
+        let response = await fetch('/student/course-list/'+localStorage.getItem("ID"));
+        let tableContent = await response.json();
+
+        for (let i = 1; i < tableContent.length; i++){
+            let txtTdID = "<td class=\"t_ID\">" + (tableContent[i]["CourseId"]) + "</td>";
+            let txtTdCRN = "<td class=\"t_CRN\">" + (tableContent[i]["CRN"]) + "</td>";
+            let txtTdCourse = "<td class=\"t_course\">" + (tableContent[i]["Course Name"]) + "</td>";
+            let txtTdDepartment = "<td class=\"t_department\">" + (tableContent[i]["Department"]) + "</td>";
+            let txtTdProfessor = "<td class=\"t_professor\">" + (tableContent[i]["Professor Name"]) + "</td>";
+            let txtTdCredits = "<td class=\"t_credits\">" + (tableContent[i]["Credits"]) +"</td>";
+
+            let txtTr = "<tr id=\"row\">" + txtTdID + txtTdCRN + txtTdCourse + txtTdDepartment + txtTdProfessor + txtTdCredits + "</tr>";
+            table.innerHTML += txtTr;
+        }
+    }
+    loadTable();
+
+    let submitB = document.querySelector("#submitB");
+    submitB.addEventListener("click", edit)
+
+    async function edit(){
+        let entryInput = document.querySelector("#CRNInput").value;
+
+        let dropdown = document.querySelector("#editDropdown");
+        let dropdownInput = dropdown.options[dropdown.selectedIndex].value;
+
+        var editMethod = "";
+        if (dropdownInput == "Insert") editMethod = 'POST';
+        else if (dropdownInput == "Delete") editMethod = 'DELETE';
+
+        let response = await fetch("/student/edit-courses/", {
+            method: editMethod,
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({id: localStorage.getItem("ID"), courseId: entryInput})
+        });
+
+        return window.location.reload();
+    }
 </script>
