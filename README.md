@@ -59,7 +59,8 @@ module.exports = {
 ```
 
 #### Frontend
-   The website should display the classes that result after you input your search through the filter.
+   The website should display the classes that result after you input your search through the filter by connecting to the code on the backend to access the data from the database. 
+   
      <!-- script for getting table -->
 ```HTML
 <script>
