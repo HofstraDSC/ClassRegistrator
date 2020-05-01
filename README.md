@@ -108,7 +108,7 @@ module.exports = router;
 
 ---
 
-Assuming the classes searched for do not have prerequisites, the following code is meant to update the user's classes and information based on the search. However, the classes are not stored if there are prerequisite classes needed.
+Assuming the classes searched for do not have prerequisites, the following code is meant to update the user's classes and information based on the search. However, the classes are not stored if the prerequisites for the class have not been met.
 ```javascript
 const db =  require('../database/database');
 
