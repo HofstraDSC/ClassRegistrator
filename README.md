@@ -6,15 +6,108 @@ Filters out all the classes you don't need while searching for your classes.
    What things you need to install the software and how to install them
    
 #### Database 
-  If you would like to make your own database, we recommend installing MySQL Server and workbench using the link   <https://dev.mysql.com/doc/workbench/en/wb-installing.html>.
+  If you would like to make your own database, we recommend installing MySQL Server and workbench using the link       <https://dev.mysql.com/doc/workbench/en/wb-installing.html>.
   Select the installation process that corresponds with your operating system and follow the steps
-	  
+
+#### Tools to Get You Started
+	
 ---
 	
 ### How the Code Works
 #### Backend
-The below code can be found under the file, __user.js__, and is intended to route information from the database to the website in order for the user to view the classes that matched their search on the database. 
+The code can be found under the file, __user.js__, and is intended to route information from the database to the website in order for the user to view the classes that matched their search on the database. 
 
+```javascript
+const express = require("express");
+const router = express.Router();
+
+const app = express();
+
+let user = require('../models/user');
+
+router.get('/student/:id', async function(req,res){
+	try{
+		const result = await user.getUser(req.params.id);
+		if(result.length === 0){
+			throw Error('No user');
+		}
+		return res.status(200).send(result[0])
+	}catch(error){
+		console.error(error);
+		return res.status(400).send({
+			message: 'Could not get user'
+		})
+	}
+});
+
+router.get('/courses/all', async (req, res) =>{
+	try{
+		const result = await user.searchClassesForUser();
+		if(result.length === 0){
+			throw Error('No Courses');
+		}
+		return res.status(200).send(result)
+	}catch(error){
+		console.error(error);
+		return res.status(400).send({
+			message: 'Could not get courses'
+		})
+	}
+});
+
+router.get('/student/course-list/:id', async function(req,res){
+	try{
+		const result = await user.getCoursesfromUser(req.params.id);
+		if(result.length === 0){
+			throw Error('No Courses');
+		}
+		return res.status(200).send(result)
+	}catch(error){
+		console.error(error);
+		return res.status(400).send({
+			message: 'Could not get courses'
+		})
+	}
+});
+
+router.post('/student/edit-courses', async function(req,res){
+	try{
+		const result = await user.addCourseToUser(req.body.id, req.body.courseId);
+		if(result){
+			return res.status(204).send()
+		}else{
+			throw Error('Failed to add course')
+		}
+	}catch(error){
+		console.error(error);
+		return res.status(400).send({
+			message: 'Could not add course'
+		})
+	}
+});
+
+router.delete('/student/edit-courses', async function(req,res){
+	try{
+		const result = await user.removeCourseFromUser(req.body.id, req.body.courseId);
+		if(result){
+			return res.status(204).send()
+		}else{
+			throw Error('Failed to delete course')
+		}
+	}catch(error){
+		console.error(error);
+		return res.status(400).send({
+			message: 'Could not delete course'
+		})
+	}
+});
+
+module.exports = router;
+```
+
+---
+
+Assuming the classes searched for do not have prerequisites, the following code is meant to update the user's classes and information based on the search. However, the classes are not stored if there are prerequisite classes needed.
 ```javascript
 const db =  require('../database/database');
 
@@ -57,15 +150,29 @@ module.exports = {
   }
 }
 ```
-
 #### Frontend
-   The website should display the classes that result after you input your search through the filter by connecting to the code on the backend to access the data from the database. This code can be found in the __course_list.handlebars__ file.
-   
-     <!-- script for getting table -->
+   The website should display the classes that result after you input your search through the filter by connecting to the code on the backend to access the data from the database. The code can be found in the __course_list.handlebars__ file.
+
 ```HTML
+<!-- script for getting table -->
 <script>
-    let table = fetch('/student/course-list');
-    console.log(table);
+    let main = async function(){
+        let table = document.querySelector("table");
+        let response = await fetch('/courses/all');
+        let tableContent = await response.json();
+        
+        for (let i = 1; i < tableContent.length; i++){
+            let txtTdID = "<td class=\"t_ID\">" + (tableContent[i]["CourseId"]) + "</td>";
+            let txtTdCRN = "<td class=\"t_CRN\">" + (tableContent[i]["CRN"]) + "</td>";
+            let txtTdCourse = "<td class=\"t_course\">" + (tableContent[i]["Course Name"]) + "</td>";
+            let txtTdDepartment = "<td class=\"t_department\">" + (tableContent[i]["Department"]) + "</td>";
+            let txtTdProfessor = "<td class=\"t_professor\">" + (tableContent[i]["Professor Name"]) + "</td>";
+            let txtTdCredits = "<td class=\"t_credits\">" + (tableContent[i]["Credits"]) +"</td>";
+            let txtTr = "<tr id=\"row\">" + txtTdID + txtTdCRN + txtTdCourse + txtTdDepartment + txtTdProfessor + txtTdCredits + "</tr>";
+            table.innerHTML += txtTr;
+        }
+    }
+    main();
 </script>
 
 <!-- script for filtering based on filter checkboxes -->
@@ -90,16 +197,21 @@ module.exports = {
 <script>
     let filterInput = document.querySelector("#filterInput");
     filterInput.addEventListener("keyup", searchFilterCourses); // filterCourses function runs everytime a key is pressed
-    function searchFilterCourses(){
+    async function searchFilterCourses(){
         let filterValue = filterInput.value.toUpperCase(); // all text is uppercased to compare
         let rows = document.querySelectorAll("#row"); // gets all rows
+        console.log(rows);
         for (let i = 0; i < rows.length; i++) {
             let rowTDs = rows[i].querySelectorAll("td"); // gets all td from row[i]
-            let rowCourseText = rowTDs[0].innerHTML.toUpperCase();
-            let rowDepartmentText = rowTDs[1].innerHTML.toUpperCase();
-            let rowProfessorText = rowTDs[2].innerHTML.toUpperCase();
-            let rowCreditText = rowTDs[3].innerHTML;
-            if (rowCourseText.indexOf(filterValue) > -1 || // filterValue found in one of the cells
+            let rowIDText = rowTDs[0].innerHTML;
+            let rowCRNText = rowTDs[1].innerHTML;
+            let rowCourseText = rowTDs[2].innerHTML.toUpperCase();
+            let rowDepartmentText = rowTDs[3].innerHTML.toUpperCase();
+            let rowProfessorText = rowTDs[4].innerHTML.toUpperCase();
+            let rowCreditText = rowTDs[5].innerHTML;
+            if (rowIDText.indexOf(filterValue) > -1 ||
+                rowCRNText.indexOf(filterValue) > -1 ||
+                rowCourseText.indexOf(filterValue) > -1 || // filterValue found in one of the cells
                 rowDepartmentText.indexOf(filterValue) > -1 ||
                 rowProfessorText.indexOf(filterValue) > -1 ||
                 rowCreditText.indexOf(filterValue) > -1) rows[i].style.display = "";
@@ -108,16 +220,13 @@ module.exports = {
     }
 </script>
 
-<!-- script for making another page if there are too many results -->
+<!-- script for making another page if there are too many results 
 <script>
     let tableHeight = document.querySelectorAll("#row");
     if (rows.length >= 2) console.log(rows);
-</script>
-```
----	
-	
-### Running the Tests
+</script>-->
 
+```
 ---
 
 ### Built with 
