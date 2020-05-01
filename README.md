@@ -59,7 +59,7 @@ module.exports = {
 ```
 
 #### Frontend
-   The website should display the classes that result after you input your search through the filter by connecting to the code on the backend to access the data from the database. 
+   The website should display the classes that result after you input your search through the filter by connecting to the code on the backend to access the data from the database. This code can be found in __the course_list.handlebars__ file.
    
      <!-- script for getting table -->
 ```HTML
