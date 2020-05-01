@@ -1,6 +1,6 @@
 # ClassRegistrator
    This software filters out all the classes you don't need while searching for your classes.
-   The website to access this class search filter can be found using this link <http://35.188.230.180:3000/>
+   The website to access this class search filter can be found using this link <http://35.188.230.180:3000/>.
 
 ### Prerequisites
    What things you need to install the software and how to install them.
