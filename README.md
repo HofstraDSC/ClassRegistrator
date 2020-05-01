@@ -35,7 +35,7 @@ The code can be found in a folder named __routes__ under the file, __user.js__, 
 - __Jayson Mendoza__ - Frontend Programmer
 - __Renan Charles-Pierre__ - Frontend Programmer
 - __Franklin "Hina" Chen__ - Database Management/Misc.
-- __Aihra Villarreiz__ - Database Management/Misc
+- __Aihra Villarreiz__ - Database Management/Misc.
 
 ---
 
