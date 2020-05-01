@@ -140,7 +140,7 @@ module.exports = {
 ---
 
 ### Project Status
-   We are still working to get the software.
+   This program is still in the process of being finalized.
 	
 
 
