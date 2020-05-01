@@ -3,7 +3,7 @@
    The website to access this class search filter can be found using this link <http://35.188.230.180:3000/>.
 
 ### Prerequisites
-   What things you need to install the software and how to install them.
+   What things you need to get the website running and how to install them.
    
 #### Database 
   If you would like to make your own database, we recommend installing MySQL Server and workbench using the link       <https://dev.mysql.com/doc/workbench/en/wb-installing.html>.
